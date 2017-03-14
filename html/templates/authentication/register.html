@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col offset-m3 s12 m6">
+    <div class="card darken-1">
+      <form ng-submit="register()">
+        <div class="card-content">
+          <div class="row">
+            <div class="input-field col s12">
+              <input ng-model="user.username" type="text" name="register__username" value="">
+              <label for="register__username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input ng-model="user.email" type="email" name="register__email" value="">
+              <label for="register__email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input ng-model="user.password" type="password" name="register__password" value="">
+              <label for="register__password">Password</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <div class="row">
+            <input class="btn right" type="submit" name="register__submit" value="Register">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

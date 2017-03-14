@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col offset-m3 s12 m6">
+    <div class="card darken-1">
+      <form ng-submit="login()">
+        <div class="card-content">
+          <div class="row">
+            <div class="input-field col s12">
+              <input ng-model="username" type="text" name="login__username" value="">
+              <label for="login__username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input ng-model="password" type="password" name="login__password" value="">
+              <label for="login__password">Password</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <div class="row">
+            <input class="btn right" type="submit" name="login__submit" value="Log in">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

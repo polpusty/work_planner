@@ -1,0 +1,13 @@
+<nav>
+    <div class="nav-wrapper">
+        <a ui-sref="app" class="brand-logo">Work Planner</a>
+        <ul ng-if="!user" class="right hide-on-med-and-down">
+            <li><a ui-sref=".login" class="waves-effect waves-light btn">Login</a></li>
+            <li><a ui-sref=".register" class="waves-effect waves-light btn">Register</a></li>
+        </ul>
+        <ul ng-if="user" class="right hide-on-med-and-down">
+            <li><a ui-sref=".board.list" class="waves-effect waves-light btn">Board</a></li>
+            <li><a ng-click="logout()" class="waves-effect waves-light btn">Logout</a></li>
+        </ul>
+    </div>
+</nav>
