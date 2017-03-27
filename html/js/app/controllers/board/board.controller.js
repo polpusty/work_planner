@@ -38,6 +38,8 @@ planner.controller('BoardDetailsController', function ($scope, $state, $statePar
 
     $scope.addNote = addNote;
     $scope.addColumn = addColumn;
+    $scope.dropCallback = dropCallback;
+    $scope.startCallback = startCallback;
 
     function addNote (column) {
         column.newNote.column = column.id;
@@ -55,5 +57,17 @@ planner.controller('BoardDetailsController', function ($scope, $state, $statePar
             $scope.columns.push(newColumn);
             $scope.newColumn = {};
         })
+    }
+
+    function dropCallback(event, ui, column) {
+        if(column.id !== $scope.dragColumn.id) {
+            $scope.dragNote.column = column.id;
+            Note.update($scope.dragNote);
+        }
+    }
+
+    function startCallback(event, ui, note, $index, column) {
+        $scope.dragNote = note;
+        $scope.dragColumn = column;
     }
 });

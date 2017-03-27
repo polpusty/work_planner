@@ -1,12 +1,12 @@
 <div class="row">
-    <div data-drop="true" ng-model="column.notes" jqyoui-droppable="{onStart: 'log'}" data-drop="true" ng-repeat="column in columns" class="col s12 m4">
+    <div data-drop="true" ng-model="column.notes" jqyoui-droppable="{onDrop: 'dropCallback(column)'}" data-drop="true" ng-repeat="column in columns" class="col s12 m4">
         <div class="card">
             <div class="card-content">
                 <div class="card-title">
                     {{ column.name }}
                 </div>
                 <div class="row">
-                    <div ng-repeat="note in column.notes"  jqyoui-draggable="{onStart: 'log'}" ng-model="note" data-drag="true" class="col s12 m12">
+                    <div ng-repeat="note in column.notes" jqyoui-draggable="{index: {{ $index }}, onStart: 'startCallback(note, $index, column)'}" ng-model="column.notes" data-drag="true" class="col s12 m12">
                         <div class="card-panel teal">
                             <span class="white-text">
                                 {{ note.text }}
