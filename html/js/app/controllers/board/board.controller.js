@@ -1,15 +1,23 @@
 planner.controller('BoardListController', function ($scope, Board) {
-    Board.list().then(function (data) {
+    Board.listNotArchived().then(function (data) {
         $scope.boards = data.data;
     });
 
     $scope.addBoard = addBoard;
+    $scope.archiveBoard = archiveBoard;
     $scope.deleteBoard = deleteBoard;
 
     function addBoard() {
         Board.create($scope.newBoard).then(function (data) {
             $scope.boards.push(data.data);
             $scope.newBoard = {};
+        })
+    }
+
+    function archiveBoard(board) {
+        board.archived = true;
+        Board.update(board).then(function (data) {
+            $scope.boards.splice($scope.boards.indexOf(board), 1)
         })
     }
 
@@ -38,6 +46,8 @@ planner.controller('BoardDetailsController', function ($scope, $state, $statePar
 
     $scope.addNote = addNote;
     $scope.addColumn = addColumn;
+    $scope.archiveNote = archiveNote;
+    $scope.archiveColumn = archiveColumn;
     $scope.dropCallback = dropCallback;
     $scope.startCallback = startCallback;
 
@@ -56,6 +66,20 @@ planner.controller('BoardDetailsController', function ($scope, $state, $statePar
             newColumn.notes = [];
             $scope.columns.push(newColumn);
             $scope.newColumn = {};
+        })
+    }
+
+    function archiveNote(note, column) {
+        note.archived = true;
+        Note.update(note).then(function (data) {
+            column.notes.splice(column.notes.indexOf(note), 1)
+        })
+    }
+
+    function archiveColumn(column) {
+        column.archived = true;
+        Column.update(column).then(function (data) {
+            $scope.columns.splice($scope.columns.indexOf(column), 1)
         })
     }
 

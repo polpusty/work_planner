@@ -1,6 +1,7 @@
 planner.factory('Board', function ($http, API) {
     return {
         list: list,
+        listNotArchived: listNotArchived,
         get: get,
         create: create,
         update: update,
@@ -9,6 +10,10 @@ planner.factory('Board', function ($http, API) {
 
     function list() {
         return $http.get(API.URL_V1 + 'boards/')
+    }
+
+    function listNotArchived() {
+        return $http.get(API.URL_V1 + 'boards/' + '?archived=false')
     }
 
     function get(id) {

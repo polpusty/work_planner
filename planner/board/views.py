@@ -9,6 +9,8 @@ class BoardViewSet(viewsets.ModelViewSet):
     lookup_field = 'id'
     serializer_class = BoardSerializer
     permission_classes = (permissions.IsAuthenticated, BoardPermission,)
+    filter_backends = filters.DjangoFilterBackend,
+    filter_fields = 'archived',
 
     def get_queryset(self):
         if self.request.user.is_staff:
@@ -22,7 +24,7 @@ class ColumnViewSet(viewsets.ModelViewSet):
     serializer_class = ColumnSerializer
     permission_classes = (permissions.IsAuthenticated, ColumnPermission,)
     filter_backends = filters.DjangoFilterBackend,
-    filter_fields = 'board',
+    filter_fields = 'board', 'archived'
 
     def get_queryset(self):
         if self.request.user.is_staff:
@@ -36,7 +38,7 @@ class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     permission_classes = (permissions.IsAuthenticated, NotePermission,)
     filter_backends = filters.DjangoFilterBackend,
-    filter_fields = 'column',
+    filter_fields = 'column', 'archived'
 
     def get_queryset(self):
         if self.request.user.is_staff:

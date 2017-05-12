@@ -29,6 +29,6 @@ planner.factory('Note', function ($http, API) {
     }
 
     function notesInColumn(column_id) {
-        return $http.get(API.URL_V1 + 'notes/?column=' + column_id)
+        return $http.get(API.URL_V1 + 'notes/?column=' + column_id+ '&archived=false')
     }
 });

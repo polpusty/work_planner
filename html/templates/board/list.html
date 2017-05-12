@@ -5,6 +5,9 @@
                 <span class="card-title" ui-sref="app.board.details({boardId: board.id})">{{ board.name }}</span>
             </div>
             <div class="card-action">
+                <a ng-click="archiveBoard(board)" class="waves-effect waves-light btn red">
+                    <i class="material-icons">remove</i>
+                </a>
             </div>
         </div>
     </div>

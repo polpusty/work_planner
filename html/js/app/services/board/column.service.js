@@ -29,6 +29,6 @@ planner.factory('Column', function ($http, API) {
     }
 
     function columnInBoards(board_id) {
-        return $http.get(API.URL_V1 + 'columns/?board=' + board_id)
+        return $http.get(API.URL_V1 + 'columns/?board=' + board_id + '&archived=false')
     }
 });
