@@ -11,4 +11,4 @@ planner.controller('LoginController', function($scope, $state, Authentication){
   function login() {
     Authentication.login($scope.username, $scope.password);
   }
-})
+});

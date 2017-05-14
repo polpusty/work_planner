@@ -8,4 +8,4 @@ planner.controller('RegisterController', function ($scope, $state, Authenticatio
   function register() {
     Authentication.register($scope.user);
   }
-})
+});
