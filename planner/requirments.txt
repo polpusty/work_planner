@@ -14,3 +14,5 @@ pytz==2016.10
 setuptools==34.2.0
 six==1.10.0
 wheel==0.30.0a0
+psycopg2
+gunicorn
