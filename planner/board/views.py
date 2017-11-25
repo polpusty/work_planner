@@ -1,6 +1,6 @@
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, permissions, filters, response, status
 
-from .models import Board, Column, Note
+from .models import Board, Column, Note, BoardUser
 from .permissions import BoardPermission, ColumnPermission, NotePermission
 from .serializers import BoardSerializer, ColumnSerializer, NoteSerializer
 
@@ -11,6 +11,16 @@ class BoardViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, BoardPermission,)
     filter_backends = filters.DjangoFilterBackend,
     filter_fields = 'archived',
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        board = Board.objects.get(pk=serializer.data['id'])
+        BoardUser.objects.create(user=request.user, board=board, is_admin=True)
+        headers = self.get_success_headers(serializer.data)
+        return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
     def get_queryset(self):
         if self.request.user.is_staff:
